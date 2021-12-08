@@ -1,0 +1,82 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Compare-Object PShell Alternative</Title>
+                <Description>PShell alternative to Compare-Object</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='1140'>
+                    <![CDATA[function Compare-MyObjects
+{
+  <#
+      .SYNOPSIS
+      Powershell alternative to Compare-Object.
+      .DESCRIPTION
+      Powershell alternative to Compare-Object. Easier
+      to read where the objects are simple builds.
+      .EXAMPLE
+      $a = @(1,2,5,7,9,12)
+      $b = @(1,2,5,12,111)
+
+      Compare-MyObjects -First $a -Second $b -CompareAction FirstOnly
+
+  #>
+  [CmdletBinding()]
+  param
+  (
+    [Parameter(Mandatory, Position=0)]
+    $First,
+    
+    [Parameter(Mandatory, Position=1)]
+    $Second,
+    
+    [Parameter(Mandatory, Position=2)]
+    [ValidateSet(
+        'Union','Intersect',
+      'FirstOnly','SecondOnly') 
+    ]
+    $CompareAction
+  )
+
+  switch ($CompareAction){
+    'Union' {
+      $First + $Second | select -unique
+    }
+    'Intersect' {
+      $First | ? { $_ -in $Second }
+    }
+    'FirstOnly' {
+      $First | ? { $_ -notin $Second }
+    }
+    'SecondOnly' {
+      $Second | ? { $_ -notin $First }
+    }
+  }
+}
+
+#PShell alternative to Compare-Object
+$a = @(1,2,5,7,9,12)
+$b = @(1,2,5,12,111)
+
+Compare-MyObjects -First $a -Second $b -CompareAction FirstOnly]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

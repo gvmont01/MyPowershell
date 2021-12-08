@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Snippets xmlns="http://schemas.microsoft.com/PowerShell/Snippets">
+  <Snippet Version="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>New-Snippet</Title>
+      <Description>Create a New Snippet</Description>
+      <Author>Greg Montoya</Author>
+    </Header>
+    <Code>
+      <Script Language="powershell" CaretOffset="0"><![CDATA[$snippet = @{
+    Title = "Put Title Here";
+    Description = "Description Here";
+    Text = @"
+    Code in Here 
+"@
+}
+New-IseSnippet @snippet]]></Script>
+    </Code>
+  </Snippet>
+</Snippets>

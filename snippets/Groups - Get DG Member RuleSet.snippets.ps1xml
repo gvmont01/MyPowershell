@@ -1,0 +1,83 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Groups - Get DG Member RuleSet</Title>
+                <Description>Report on membership rules for given DG</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='1214'>
+                    <![CDATA[
+function Get-DGMembershipRules
+{  
+  param
+  (    
+    [Parameter(Mandatory=$True)]
+    [string]$Identity,
+
+    [Parameter(Mandatory=$true,HelpMessage='Choose the ARS server for lookup.')]
+    [ValidateSet('COVQARS01.morganlewis.net','COVQARS02.morganlewis.net')]
+    [String]$ARServer
+  )
+
+  begin{
+    #count var for table output
+    $cnt = 0
+  }
+
+  process{
+    $lookup = (Get-QADGroup $Identity -Proxy -dudip -ErrorAction SilentlyContinue).DirectoryEntry.MembershipRuleCollection
+
+    if (-not $lookup){Throw 'Group not located'}
+
+    foreach ($grp in $lookup){
+      #increment count
+      $cnt++
+
+      $ruleType = switch ($grp.type){
+        1 {'Query'}
+        3 {'Explicit Inclusion'}
+        6 {'Explicit Exclusion'}
+      }  
+      
+      #function output
+      [PSCustomObject] @{
+        'Rule Number' = $cnt
+        'Group Name' = $Identity
+        'Rule Type' = $ruleType
+        Base = ($grp.base -split '.net/')[1]
+        Filter = $grp.filter 
+      }
+    
+    }
+  }
+
+  end{
+    $lookup = $null
+  }
+  
+}
+
+
+$GrpName = 'PH Personnel' # 'ph litigation non-legal'
+Get-DGMembershipRules -Identity $GrpName -ARServer COVQARS01.morganlewis.net | ogv]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

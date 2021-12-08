@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Sort for Unique Rows</Title>
+                <Description>Uses sort-object to locate unique rows</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='137'>
+                    <![CDATA[import-csv C:\temp\ubertest.csv -Header fname, lname, email, ID | sort-object -Property ID -Unique | export-csv C:\temp\uberFinal0830.csv]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

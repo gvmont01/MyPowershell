@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>LDAP - All users with specified email address</Title>
+                <Description>All users with specified email address in proxyAddresses or mail attribute</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='137'>
+                    <![CDATA['(&(objectCategory=person)(objectClass=user)(|(proxyAddresses=*:gregory.montoya@morganlewis.com)(mail=gregory.montoya@morganlewis.com)))']]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

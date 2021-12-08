@@ -1,0 +1,41 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>SID Translate - SID to Sam</Title>
+                <Description></Description>
+                <Shortcut></Shortcut> 
+                <Keywords>Comment,Parameter,Attribute,Pipeline,ScriptBlock,Editor,Console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x86,x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+            <Declarations>
+                <Literal>
+                   <ID><![CDATA[75;45;0]]></ID>
+                   <Default></Default>
+                   <ToolTip><![CDATA[Input user's SID value]]></ToolTip>
+                   <ToolTipStatusbar><![CDATA[SID]]></ToolTipStatusbar>
+                </Literal>
+            </Declarations>
+
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='190'>
+                    <![CDATA[$objSID = New-Object System.Security.Principal.SecurityIdentifier `
+    ('S-1-5-21-1995508889-854850475-3617568098-6461')
+( $objSID.Translate([System.Security.Principal.NTAccount]) ).value]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

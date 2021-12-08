@@ -1,0 +1,32 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>String - Extract email address via RegEx</Title>
+                <Description>uses regEx pattern to extract email address from a string</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='210'>
+                    <![CDATA[$String = 'Yonge, William J.G. <william.yonge@morganlewis.com>;'
+$pattern = '([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})'
+$emailAddy = ($String | Select-String $pattern -AllMatches).Matches.Value]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

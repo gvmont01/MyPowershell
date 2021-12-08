@@ -1,0 +1,47 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Get-Duplicate</Title>
+                <Description></Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='323'>
+                    <![CDATA[function Get-Duplicate {
+   [CmdletBinding()]
+   param (
+     [int[]]$iarray
+   )
+
+  $iarray | Group-Object | 
+   where Count -gt 1 |
+   foreach {
+     [pscustomobject]@{
+       DuplicateNumber = $_.Name
+       Count           = $_.Count
+     }
+   }
+}
+
+Get-Duplicate -iarray 1,2,3,3,4,5,6,7,7,8,8,8,8,9,9 
+]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

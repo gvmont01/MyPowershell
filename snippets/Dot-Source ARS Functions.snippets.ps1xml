@@ -1,0 +1,37 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>ARS - Dot-Source Functions</Title>
+                <Description>dot sourcing the ARSTaskFunctions file to accomodate prod or testing</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='263'>
+                    <![CDATA[if ($env:COMPUTERNAME -eq 'MXL91036JT-W10'){
+  #for testing on Greg's machine
+  . 'C:\_stuff\Scripts\TFS Source\Identity Management\Production\ARS\Libraries\Powershell\ARSTaskFunctions.ps1'
+    
+} else {
+  . E:\Scripts\Functions\ARSTaskFunctions.ps1
+    
+}]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

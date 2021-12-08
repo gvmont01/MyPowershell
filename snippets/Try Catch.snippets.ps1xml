@@ -1,0 +1,35 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Try Catch</Title>
+                <Description></Description>
+                <Shortcut></Shortcut> 
+                <Keywords>Comment,Parameter,Attribute,Pipeline,ScriptBlock,Editor,Console</Keywords>
+                <Author>MP060096_P</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x86,x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='110'>
+                    <![CDATA[ try
+ {
+    $Var = Get-Something
+ } catch [system.exception] {
+      throw $error[0].Exception.Message
+ }]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

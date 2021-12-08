@@ -1,0 +1,50 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Regex - Named Capture Groups</Title>
+                <Description>Use of named capture groups to label portions of a string</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='597'>
+                    <![CDATA[#EXAMPLE -- use of regex named capture groups to label parts of a string
+$RegexCapturePattern = '^(?:(?<cn>CN=(?<name>[^,]*)),)?(?:(?<path>(?:(?:CN|OU)=[^,]+,?)+),)?(?<domain>(?:DC=[^,]+,?)+)$'
+$MyDN = 'CN=Sam Jensen,OU=Vendors,OU=Firm,OU=Administrative,DC=morganlewis,DC=net'
+
+$match = [Regex]::Match($myDN, $RegexCapturePattern)
+
+$match.Groups['cn'].Value
+ 
+ #returns CN=Sam Jensen
+
+$match.Groups['name'].Value
+ 
+ #returns Sam Jensen
+
+$match.Groups['path'].Value
+
+ #returns OU=Vendors,OU=Firm,OU=Administrative
+
+$match.Groups['domain'].Value
+ 
+ #returns DC=morganlewis,DC=net]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

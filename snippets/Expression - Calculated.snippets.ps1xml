@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Snippets xmlns="http://schemas.microsoft.com/PowerShell/Snippets">
+  <Snippet Version="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Expression - Calculated</Title>
+      <Description>Syntax for a Calculated Property</Description>
+      <Author>Greg Montoya</Author>
+    </Header>
+    <Code>
+      <Script Language="powershell" CaretOffset="19"><![CDATA[@{N='Title';E={ }}]]></Script>
+    </Code>
+  </Snippet>
+</Snippets>

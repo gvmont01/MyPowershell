@@ -1,0 +1,25 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Groups - Distribution List Search</Title>
+                <Description></Description>
+                <Shortcut></Shortcut> 
+                <Keywords>Comment,Parameter,Attribute,Pipeline,ScriptBlock,Editor,Console</Keywords>
+                <Author>Greg Montoya</Author>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='125'>
+                    <![CDATA[#search for automated AD Distribution groups
+Get-QADGroup -SearchRoot 'morganlewis.net/Groups/Distribution' -sl 0 | %{
+    
+}]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

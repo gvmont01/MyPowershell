@@ -1,0 +1,52 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Get-FolderPermissions</Title>
+                <Description></Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='718'>
+                    <![CDATA[function Get-FolderPermissions {
+  param
+  (
+    [Parameter(Mandatory=$true)]
+    [string[]]$path
+  )
+
+  foreach ($item in $path)  {
+    (Get-Acl $item).access | select `
+    @{N='Path';E={ $item }}, 
+    @{Label='Identity';Expression={$_.IdentityReference}}, 
+    @{Label='Right';Expression={$_.FileSystemRights}}, 
+    @{Label='Access';Expression={$_.AccessControlType}}, 
+    @{Label='Inherited';Expression={$_.IsInherited}}, 
+    @{Label='Inheritance Flags';Expression={$_.InheritanceFlags}}, 
+    @{Label='Propagation Flags';Expression={$_.PropagationFlags}} 
+  }
+
+}
+
+$Shares = '\\pavhome01\PADATA01\DATA\IP\HiKE', '\\pavhome01\PADATA01\DATA\IP'
+
+Get-FolderPermissions $Shares | ft -AutoSize]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

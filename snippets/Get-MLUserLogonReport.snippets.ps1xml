@@ -1,0 +1,41 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Get-MLUserLogonReport</Title>
+                <Description>Report of user logons per OU path</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='528'>
+                    <![CDATA[$MLActiveOUs                = 'OU=offices,DC=morganlewis,DC=net','OU=Offices,OU=Administrative,DC=morganlewis,DC=net'
+$SecurityOU                 = 'morganlewis.net/Security Accounts'
+$ServiceAcctsOU             = 'morganlewis.net/service account'
+$AdminOfficesOU             = 'morganlewis.net/Administrative/Offices'
+$AdminVendorOU              = 'morganlewis.net/Administrative/Firm/Vendors'
+$MLClientSitesServiceAcctOU = 'OU=Service Account,DC=mlclientsites,DC=com'
+
+Get-MLUserLogonReport -CreationBackDate 11/01/2020  `
+                        -DomainPath  $SecurityOU, $AdminVendorOU    `
+                        -ReportFilePath C:\temp\reports `
+                        -DaysNotLoggedOneFor 60 `
+                        -verbose ]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

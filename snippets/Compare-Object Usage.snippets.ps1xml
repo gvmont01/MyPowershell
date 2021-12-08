@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Compare-Object</Title>
+                <Description>Compare-Object usage</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='322'>
+                    <![CDATA[$l1=@('1','2','3')
+
+$l2=@('3','4','5')
+
+#Union
+
+Compare-Object $l1 $l2 -IncludeEqual
+
+#In both
+
+Compare-Object $l1 $l2 -IncludeEqual -ExcludeDifferent
+
+#in first list only
+
+Compare-Object $l1 $l2 |?{ $_.sideindicator -eq "<="}
+
+#in sectond list only
+
+Compare-Object $l1 $l2 |?{ $_.sideindicator -eq "=>"}]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Morgan - GL Dept Count</Title>
+                <Description>Get ML GL Dept statistics</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console,comment,pipeline,attribute,scriptblock</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x86,x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='603'>
+                    <![CDATA[$MLActiveOUs = 'OU=offices,DC=morganlewis,DC=net','OU=Offices,OU=Administrative,DC=morganlewis,DC=net'
+$Date = Get-Date -format 'MMMyyyy'
+$Out = 'c:\temp\reports\ML_GLRollUp_Report_{0}.csv' -f $Date
+
+Get-QADUser -Proxy -Service covqars02 -SearchRoot $MLActiveOUs -SizeLimit 0 -IncludedProperties edsvaRollup `
+	-LdapFilter '(employeeID=*)(extensionAttribute5=*)(edsvaRollup=*)' -DontUseDefaultIncludedProperties |
+	    Group-Object -property edsvaRollup -noelement | Sort-Object -Property count -Descending | select name, count |
+            Export-Csv -NoTypeInformation $Out
+
+Invoke-Item $Out]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

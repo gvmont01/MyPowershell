@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Morgan - Unique Property Report</Title>
+                <Description>Provides unique value report of a user property</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='316'>
+                    <![CDATA[$MLActiveOUs = 'OU=offices,DC=morganlewis,DC=net','OU=Offices,OU=Administrative,DC=morganlewis,DC=net'
+$property = 'physicalDeliveryOfficeName' # 'department'
+
+Get-QADUser -ou $MLActiveOUs -sl 0 -dudip -ip $property -LdapFilter "($property=*)(employeeID=*)" | select $property -Unique | Sort-Object | Out-GridView]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

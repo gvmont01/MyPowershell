@@ -1,0 +1,44 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+    <Snippets  xmlns='http://schemas.microsoft.com/PowerShell/Snippets'>
+        <Snippet Version='1.0.0'>
+            <Header>
+                <Title>Convert-UTCtoLocal</Title>
+                <Description>Per name</Description>
+                <Shortcut></Shortcut> 
+                <Keywords>editor,console</Keywords>
+                <Author>Greg Montoya</Author>
+                <DifficultyLevel>1</DifficultyLevel>
+                <Example>False</Example>
+                <SnippetTypes>
+                    <SnippetType>Expansion</SnippetType>
+                </SnippetTypes>
+                <Requirements>
+                    <MinimumPowerShellVersion>1</MinimumPowerShellVersion>
+                    <RequiredModules></RequiredModules>
+                    <AdminPrivileges>False</AdminPrivileges>
+                    <ProcessorArchitecture>x64</ProcessorArchitecture>
+                </Requirements>
+            </Header>
+
+            <Code>
+                <Script Language='PowerShell' CaretOffset='365'>
+                    <![CDATA[function Convert-UTCtoLocal{
+  param(
+    [parameter(Mandatory)]
+    [String] $UTCTime
+  )
+
+  $strCurrentTimeZone = (Get-WmiObject win32_timezone).StandardName
+  $TZ = [TimeZoneInfo]::FindSystemTimeZoneById($strCurrentTimeZone)
+  [TimeZoneInfo]::ConvertTimeFromUtc($UTCTime, $TZ)
+}
+
+#ARS reports time in UTC format; this converts back to local
+$date = '11/1/2019 8:44:39 PM'
+
+Convert-UTCtoLocal $date]]>
+                </Script>
+            </Code>
+
+    </Snippet>
+</Snippets>

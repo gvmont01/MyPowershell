@@ -15,17 +15,17 @@ $LogPath = "c:\temp\ADPhotosTask_$LogFileDate.log" #E:\QCLogs\AD Photos\ADPhotos
 function Send-ITAlert {
 		param ($AlertSubject, $AlertMsg)
 		$EmailSubject = "Alert - AD Photo bulk update issue: $AlertSubject"
-		$MailTo = "zzIDMTeam (Local) <zzidmteam@morganlewis.com>" 
-		$MailFrom = "Quest ARS Admin <QARSAdmin@morganlewis.com>"
-		Send-MailMessage -To $MailTo -From  $MailFrom -Subject $EmailSubject -Body $AlertMsg -Priority High  -SmtpServer CORelay	
+		$MailTo = "blah blah" 
+		$MailFrom = "blah blah"
+		Send-MailMessage -To $MailTo -From  $MailFrom -Subject $EmailSubject -Body $AlertMsg -Priority High  -SmtpServer MyRelay	
 }
 function Set-ADPicture {
 	param ($EmployeeID, $UserPhoto)
-		#user must be in active status (in OFFICES OU) to have their photo updated; set Searchroot param accordingly
-		$User = Get-QADUser -SearchRoot 'OU=offices,DC=morganlewis,DC=net' -sl 0  -oa @{employeeID=$EmployeeID} `
+		#user must be in active status to have their photo updated; set Searchroot param accordingly
+		$User = Get-QADUser -SearchRoot 'blah blah' -sl 0  -oa @{employeeID=$EmployeeID} `
 						-DontUseDefaultIncludedProperties -WarningAction SilentlyContinue -ErrorAction SilentlyContinue  
 		If ($User){
-			$UserLogon = "morganlewis\{0}" -f $User.samAccountName
+			$UserLogon = "<domain>\{0}" -f $User.samAccountName
 			Write-Host "User located in AD - $UserLogon; updating object property"
 			Set-QADUser -Identity $UserLogon -ObjectAttributes @{thumbnailPhoto=$UserPhoto}  | Out-Null
 		} else{

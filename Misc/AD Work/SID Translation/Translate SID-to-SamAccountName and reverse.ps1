@@ -1,6 +1,6 @@
 ﻿# locate SID value of network account
 
-$objUser = New-Object System.Security.Principal.NTAccount('morganlewis', 'mp060096')
+$objUser = New-Object System.Security.Principal.NTAccount('<domain>', '<samAccountName>')
 $strSID = $objUser.Translate([System.Security.Principal.SecurityIdentifier])
 $strSID.Value
 

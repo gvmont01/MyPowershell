@@ -1,4 +1,4 @@
-﻿invoke-command -ComputerName COVQIDM02 -ScriptBlock { 
+﻿invoke-command -ComputerName <server> -ScriptBlock { 
   $sched = New-Object -Com 'Schedule.Service'
   $sched.Connect()
   $out = @()

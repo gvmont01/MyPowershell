@@ -7,7 +7,7 @@
  #region OPTION 1
 LoadADModule
 
-Get-ADDefaultDomainPasswordPolicy 'bingham.com' -Server 'bos1'
+Get-ADDefaultDomainPasswordPolicy '<domain>.com' -Server 'bos1'
 
 #another option using QAD cmdlets
 #http://blogs.technet.com/b/heyscriptingguy/archive/2014/01/09/use-powershell-to-get-account-lockout-and-password-policy.aspx

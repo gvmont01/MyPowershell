@@ -1,1 +1,1 @@
-﻿Get-ADDomainController -DomainName bingham.com -Discover 
+﻿Get-ADDomainController -DomainName <domain>.com -Discover 

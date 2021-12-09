@@ -23,7 +23,7 @@
             <Code>
                 <Script Language='PowerShell' CaretOffset='282'>
                     <![CDATA[$session = New-PSSession  -ConfigurationName Microsoft.Exchange `
-			-ConnectionUri 'http://covexht03.morganlewis.net/PowerShell/'  `
+			-ConnectionUri 'http://covexht03.<domain>.net/PowerShell/'  `
 			-Authentication Kerberos -AllowRedirection
 Import-PSSession $session -DisableNameChecking -AllowClobber > $null
 

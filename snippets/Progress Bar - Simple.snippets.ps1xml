@@ -22,7 +22,7 @@
 
             <Code>
                 <Script Language='PowerShell' CaretOffset='62'>
-                    <![CDATA[Write-Progress –activity '..Updates' –status "Processing..."
+                    <![CDATA[Write-Progress -activity '..Updates' -status "Processing..."
 ]]>
                 </Script>
             </Code>

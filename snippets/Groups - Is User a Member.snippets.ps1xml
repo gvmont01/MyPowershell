@@ -22,7 +22,7 @@
 
             <Code>
                 <Script Language='PowerShell' CaretOffset='97'>
-                    <![CDATA[If (Get-QADMemberOf -Identity 'MP060096' -Name 'G All eData Contract Attorney' ){'yes'}else{'no'}]]>
+                    <![CDATA[If (Get-QADMemberOf -Identity '<samaccountname>' -Name '<group>' ){'yes'}else{'no'}]]>
                 </Script>
             </Code>
 

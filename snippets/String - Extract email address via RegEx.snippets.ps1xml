@@ -22,7 +22,7 @@
 
             <Code>
                 <Script Language='PowerShell' CaretOffset='210'>
-                    <![CDATA[$String = 'Yonge, William J.G. <william.yonge@morganlewis.com>;'
+                    <![CDATA[$String = 'Yonge, William J.G. <william.yonge@<domain>.com>;'
 $pattern = '([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})'
 $emailAddy = ($String | Select-String $pattern -AllMatches).Matches.Value]]>
                 </Script>

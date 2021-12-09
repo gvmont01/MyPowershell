@@ -24,7 +24,7 @@
                 <Script Language='PowerShell' CaretOffset='95'>
                     <![CDATA[$path = 'E:\ARS_Script_Logs\User Deletion'
 
-dir $path -I *.txt, *.log -R | Select-String shea]]>
+dir $path -I *.txt, *.log -R | Select-String montoya]]>
                 </Script>
             </Code>
 

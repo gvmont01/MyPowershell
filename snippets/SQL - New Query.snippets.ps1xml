@@ -47,8 +47,8 @@
 Import-Module sqlps -DisableNameChecking > $null
 
 #SQL parameters
-$SQLServer = 'COVSQLD30'
-$SQLDB = 'MARS_DW'
+$SQLServer = '<server>'
+$SQLDB = '<DBName>'
 
 $SQLQuery = Invoke-Sqlcmd -Query 'SELECT xx FROM xx' `
                        -ServerInstance $SQLServer -Database $SQLDB -QueryTimeout 180

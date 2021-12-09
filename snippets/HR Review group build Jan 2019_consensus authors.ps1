@@ -9,9 +9,9 @@
 # 4) after script completes check $results object for bad objects
 #************************************************************
 
-$collection = Import-Csv 'c:\temp\Consensus Author Distribution List 1.22.2018.csv'
+$collection = Import-Csv 'c:\temp\blah blah.csv'
 
-$DLGroup = '2019 Staff and Secretary Evaluation Process Consensus Authors' # '2019 Staff and Secretary Evaluation Process Participants'
+$DLGroup = '<group name here>' 
 
 #library script for functions
 . E:\Scripts\Functions\ARSTaskFunctions.ps1
@@ -21,7 +21,7 @@ $DLGroup = '2019 Staff and Secretary Evaluation Process Consensus Authors' # '20
 $results = Foreach ($user in $collection){
 
   $cnt++
-  $empID = $user.'Reviewer Internal ID'
+  $empID = $user.'EagleID'
   Write-Progress -activity 'Writing to Group' -status "Search -- $empID" -percentComplete (($cnt / $collection.count)*100)
   
   $LookUp = GetEx-UserAttribByEmpID -EmpID $empID -Properties ('dn','homeMDB') -IsActiveStatus $true -IsProxy $false

@@ -31,7 +31,7 @@ function Get-DGMembershipRules
     [string]$Identity,
 
     [Parameter(Mandatory=$true,HelpMessage='Choose the ARS server for lookup.')]
-    [ValidateSet('COVQARS01.morganlewis.net','COVQARS02.morganlewis.net')]
+    [ValidateSet('COVQARS01.<domain>.net','COVQARS02.<domain>.net')]
     [String]$ARServer
   )
 
@@ -75,7 +75,7 @@ function Get-DGMembershipRules
 
 
 $GrpName = 'PH Personnel' # 'ph litigation non-legal'
-Get-DGMembershipRules -Identity $GrpName -ARServer COVQARS01.morganlewis.net | ogv]]>
+Get-DGMembershipRules -Identity $GrpName -ARServer COVQARS01.<domain>.net | ogv]]>
                 </Script>
             </Code>
 

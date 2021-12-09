@@ -22,7 +22,7 @@
 
             <Code>
                 <Script Language='PowerShell' CaretOffset='316'>
-                    <![CDATA[$MLActiveOUs = 'OU=offices,DC=morganlewis,DC=net','OU=Offices,OU=Administrative,DC=morganlewis,DC=net'
+                    <![CDATA[$MLActiveOUs = 'OU=offices,DC=<domain>,DC=net','OU=Offices,OU=Administrative,DC=<domain>,DC=net'
 $property = 'physicalDeliveryOfficeName' # 'department'
 
 Get-QADUser -ou $MLActiveOUs -sl 0 -dudip -ip $property -LdapFilter "($property=*)(employeeID=*)" | select $property -Unique | Sort-Object | Out-GridView]]>

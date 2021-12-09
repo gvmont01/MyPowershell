@@ -22,11 +22,11 @@
 
             <Code>
                 <Script Language='PowerShell' CaretOffset='603'>
-                    <![CDATA[$MLActiveOUs = 'OU=offices,DC=morganlewis,DC=net','OU=Offices,OU=Administrative,DC=morganlewis,DC=net'
+                    <![CDATA[$MLActiveOUs = 'OU=offices,DC=<domain>,DC=net','OU=Offices,OU=Administrative,DC=<domain>,DC=net'
 $Date = Get-Date -format 'MMMyyyy'
-$Out = 'c:\temp\reports\ML_GLRollUp_Report_{0}.csv' -f $Date
+$Out = 'c:\temp\reports\GLRollUp_Report_{0}.csv' -f $Date
 
-Get-QADUser -Proxy -Service covqars02 -SearchRoot $MLActiveOUs -SizeLimit 0 -IncludedProperties edsvaRollup `
+Get-QADUser -Proxy -Service <server> -SearchRoot $MLActiveOUs -SizeLimit 0 -IncludedProperties edsvaRollup `
 	-LdapFilter '(employeeID=*)(extensionAttribute5=*)(edsvaRollup=*)' -DontUseDefaultIncludedProperties |
 	    Group-Object -property edsvaRollup -noelement | Sort-Object -Property count -Descending | select name, count |
             Export-Csv -NoTypeInformation $Out

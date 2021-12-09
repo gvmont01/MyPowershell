@@ -24,7 +24,7 @@
                 <Script Language='PowerShell' CaretOffset='453'>
                     <![CDATA[$Date = '{0:MMMyyyy}' -f [datetime]::Now
 $Out = 'c:\temp\reports\OfficeCount_{0}.csv' -f $Date
-Get-QADUser -SearchRoot 'morganlewis.net/offices' -SizeLimit 0 -IncludedProperties office `
+Get-QADUser -SearchRoot '<domain>.net/offices' -SizeLimit 0 -IncludedProperties office `
 	-LdapFilter '(employeeID=*)(extensionAttribute5=*)' -DontUseDefaultIncludedProperties | 
 	Group-Object -property office -noelement | Sort-Object -Property count -Descending | select name, count |
         Export-Csv -NoTypeInformation $Out

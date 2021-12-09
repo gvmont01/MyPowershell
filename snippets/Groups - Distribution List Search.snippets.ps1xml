@@ -15,7 +15,7 @@
             <Code>
                 <Script Language='PowerShell' CaretOffset='125'>
                     <![CDATA[#search for automated AD Distribution groups
-Get-QADGroup -SearchRoot 'morganlewis.net/Groups/Distribution' -sl 0 | %{
+Get-QADGroup -SearchRoot '<domain>.net/Groups/Distribution' -sl 0 | %{
     
 }]]>
                 </Script>

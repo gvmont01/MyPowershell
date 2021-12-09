@@ -24,17 +24,17 @@
                 <Script Language='PowerShell' CaretOffset='597'>
                     <![CDATA[#EXAMPLE -- use of regex named capture groups to label parts of a string
 $RegexCapturePattern = '^(?:(?<cn>CN=(?<name>[^,]*)),)?(?:(?<path>(?:(?:CN|OU)=[^,]+,?)+),)?(?<domain>(?:DC=[^,]+,?)+)$'
-$MyDN = 'CN=Sam Jensen,OU=Vendors,OU=Firm,OU=Administrative,DC=morganlewis,DC=net'
+$MyDN = 'CN=Jo Blo,OU=Vendors,OU=Firm,OU=Administrative,DC=<domain>,DC=net'
 
 $match = [Regex]::Match($myDN, $RegexCapturePattern)
 
 $match.Groups['cn'].Value
  
- #returns CN=Sam Jensen
+ #returns CN=Jo Blo
 
 $match.Groups['name'].Value
  
- #returns Sam Jensen
+ #returns Jo Blo
 
 $match.Groups['path'].Value
 
@@ -42,7 +42,7 @@ $match.Groups['path'].Value
 
 $match.Groups['domain'].Value
  
- #returns DC=morganlewis,DC=net]]>
+ #returns DC=<domain>,DC=net]]>
                 </Script>
             </Code>
 

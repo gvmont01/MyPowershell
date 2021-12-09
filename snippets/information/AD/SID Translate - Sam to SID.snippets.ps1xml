@@ -31,7 +31,7 @@
 
             <Code>
                 <Script Language='PowerShell' CaretOffset='176'>
-                    <![CDATA[$objUser = New-Object System.Security.Principal.NTAccount('morganlewis', 'mp060096')
+                    <![CDATA[$objUser = New-Object System.Security.Principal.NTAccount('<domain>', '<samAccountname>')
 $strSID = $objUser.Translate([System.Security.Principal.SecurityIdentifier])
 $strSID.Value]]>
                 </Script>

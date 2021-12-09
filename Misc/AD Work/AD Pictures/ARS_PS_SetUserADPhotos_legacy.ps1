@@ -3,8 +3,8 @@
 # Created by Greg Montoya 5/13/2014
 #
 # Notes: 1) Reads image files from CIFS share and uploads them to AD
-#	   		 2) User must be present in OFFICES OU for the update
-#	    		 3) Image size is 30k or less with dimensions no more than 200x200
+#	   	 2) User must be active status for the update
+#	     3) Image size is 30k or less with dimensions no more than 200x200
 # Changes:
 # more here -- http://blog.lyon-marrian.com/2013/10/auto-update-ad-pictures-powershell-script/
 #endregion ************************************************************
@@ -51,20 +51,20 @@ function Set-ADUserPhotos
       #uses the initial array to see if there are errors to report
       If ($AllErrors){
         $EmailSubject = 'Alert - AD Photo bulk update errors report'
-        $MailTo = 'zzIDMTeam (Local) <zzidmteam@morganlewis.com>' 
-        $MailFrom = 'Quest ARS Admin <QARSAdmin@morganlewis.com>'
+        $MailTo = 'blah blah' 
+        $MailFrom = 'blah blah'
         $AlertMsg = $AllErrors | Select-Object * | ConvertTo-Html
         Send-MailMessage -To $MailTo -From  $MailFrom -Subject $EmailSubject -Body $AlertMsg -Priority High -BodyAsHtml  -SmtpServer CORelay	
       }
     }
     function Set-ADPicture {
       param ($EmployeeID, $UserPhoto)
-      #user must be in active status (in OFFICES OU) to have their photo updated; set Searchroot param accordingly
-      $User = Get-QADUser -SearchRoot 'OU=offices,DC=morganlewis,DC=net' -sl 0  -oa @{employeeID=$EmployeeID} `
+      #user must be in active status to have their photo updated; set Searchroot param accordingly
+      $User = Get-QADUser -SearchRoot '<domain>' -sl 0  -oa @{employeeID=$EmployeeID} `
       -DontUseDefaultIncludedProperties -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
       
       If ([bool]$User){
-        $UserLogon = 'morganlewis\{0}' -f $User.samAccountName
+        $UserLogon = '<domain>\{0}' -f $User.samAccountName
         Write-Verbose "User located in AD - $UserLogon; updating object property"
         Set-QADUser -Identity $UserLogon -ObjectAttributes @{thumbnailPhoto=$UserPhoto} > $null
         $User = $Null
@@ -181,4 +181,4 @@ function Set-ADUserPhotos
 }
 
 #TODO Ask team what the max size should be - up to 100KB is allowable (maybe 30k?)
-Set-ADUserPhotos -ImagePath '\\morgannetfiles\mlpictures$\People' -ReportFolder e:\ARSLogs -Verbose
+Set-ADUserPhotos -ImagePath '<network share>' -ReportFolder e:\ARSLogs -Verbose

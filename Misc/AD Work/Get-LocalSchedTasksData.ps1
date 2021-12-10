@@ -2,7 +2,7 @@
   $sched = New-Object -Com 'Schedule.Service'
   $sched.Connect()
   $out = @()
-  $sched.GetFolder('\').GetTasks(0) | % {
+  $sched.GetFolder('\').GetTasks(0) | ForEach-Object {
     $xml = [xml]$_.xml
     $out += New-Object psobject -Property @{
         'Name' = $_.Name
@@ -15,5 +15,5 @@
     }
   }
 
-  $out | fl Name,Status,NextRuNTime,LastRunTime,LastRunResult,Author,Created
+  $out | Format-List Name,Status,NextRuNTime,LastRunTime,LastRunResult,Author,Created
 }

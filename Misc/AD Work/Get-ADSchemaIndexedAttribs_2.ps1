@@ -2,11 +2,11 @@
 
 $forest = [System.DirectoryServices.ActiveDirectory.forest]::getcurrentforest()
 $schema = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySchema]::GetCurrentSchema().GetDirectoryEntry()
-$attributes = $schema.psbase.children | where {$_.objectClass -eq 'attributeSchema'}
+$attributes = $schema.psbase.children | Where-Object {$_.objectClass -eq 'attributeSchema'}
 
 $collection = @()
 foreach ($attr in $attributes){
-  $store = '' | select 'Name','lDAPDisplayName','singlevalued','GC','indexed','ContainerIndexing',
+  $store = '' | Select-Object 'Name','lDAPDisplayName','singlevalued','GC','indexed','ContainerIndexing',
     'ANR','PreserveonDelete','CopyonCopy','ToupleIndexing','SubtreeIndexing','Confidential',
     'AttributeAuditing','RODCenabled'
   $ATDE = [adsi]("LDAP://$($attr.distinguishedName)")

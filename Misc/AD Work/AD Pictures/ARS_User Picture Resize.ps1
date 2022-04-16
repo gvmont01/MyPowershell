@@ -23,19 +23,19 @@ function onPreModify($Request)
       {
          Add-Type -AssemblyName System.Drawing
          $stream1 = New-Object System.IO.MemoryStream @(,$data1)
-         $stream2 = New-Object System.IO.MemoryStream 
-         $image1 = [System.Drawing.Bitmap]::FromStream($stream1)
-         $width1 = $image1.Width
+         $stream2 = New-Object System.IO.MemoryStream
+         $image1  = [System.Drawing.Bitmap]::FromStream($stream1)
+         $width1  = $image1.Width
          $height1 = $image1.Height
          if (($width1 -gt 200) -or ($height1 -gt 200))
          {
-            $times = $image1.Width / 200
-            [int]$width2 = $width1/$times
+                  $times  = $image1.Width / 200
+            [int]$width2  = $width1/$times
             [int]$height2 = $height1/$times
-            $dims = $width2, $height2
+                  $dims   = $width2, $height2
 
-            $image2 = New-Object System.Drawing.Bitmap $width2,$height2
-            $gr = [System.Drawing.Graphics]::FromImage($image2)
+            $image2 = New-Object System.Drawing.Bitmap $width2, $height2
+            $gr     = [System.Drawing.Graphics]::FromImage($image2)
             $gr.DrawImage($image1,0,0,$width2,$height2)
             $image2.Save($stream2,[System.Drawing.Imaging.ImageFormat]::Jpeg)
             $data2 = $stream2.ToArray()

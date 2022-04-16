@@ -1,3 +1,3 @@
-﻿$results = (Get-ADForest).Domains | %{ Get-ADDomainController -Filter * -Server $_ | select HostName, IPv4Address, site, IsGlobalCatalog }
+﻿$results = (Get-ADForest).Domains | ForEach-Object{ Get-ADDomainController -Filter * -Server $_ | Select-Object HostName, IPv4Address, site, IsGlobalCatalog }
 
-$results | ogv -Title '<domain> domain - All Domain Controllers'
+$results | Out-GridView -Title '<domain> domain - All Domain Controllers'

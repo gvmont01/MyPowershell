@@ -13,9 +13,9 @@ $results = Get-QADObject -ou '<domain>.root/Configuration/Sites' -ip siteObjectB
   $DCServer = (Get-QADObject -Proxy -ou $ServerPath -Type server | ForEach-Object{ $_.name }) -join '; '  
 
   [PSCustomObject] @{
-    Name = $Name
-    Type = $Type
-    DC = $DCServer
+    Name    = $Name
+    Type    = $Type
+    DC      = $DCServer
     Subnets = $Subnets
   }
     

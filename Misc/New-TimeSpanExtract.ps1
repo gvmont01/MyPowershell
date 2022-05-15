@@ -1,4 +1,4 @@
-Function New-AdvancedTimeSpan {
+Function New-TimeSpanExtract {
     param(
         [datetime]$Start,
         [datetime]$End
@@ -24,7 +24,7 @@ Function New-AdvancedTimeSpan {
         }
 
        #proper span format 
-       $Span = '{0} years, {1} days, {2} hours, {3} minutes, {4} seconds' -f $TheYears, $(($span.days) % 365), $span.hours, $span.Minutes, $span.Seconds 
+       $TotalSpan = '{0} years, {1} days, {2} hours, {3} minutes, {4} seconds' -f $TheYears, $(($span.days) % 365), $span.hours, $span.Minutes, $span.Seconds 
               
        [PSCustomObject] @{
             'Total Minutes'  = $TheMinutes
@@ -33,14 +33,14 @@ Function New-AdvancedTimeSpan {
             'Total Workdays' = $workDays
             'Total Weeks'    = $TheDays/7
             'Total Years'    = $TheYears
-            Span             = $Span
+            'Total Span'     = $TotalSpan
        }
        
     }
 
 }
 
-$Start = Get-Date '12/13/2021'
+$Start = Get-Date 1/14/1970 # '11/23/2021' # '12/13/2021'
 $End   = Get-Date
 
-New-AdvancedTimeSpan -Start $Start -End $End
+New-TimeSpanExtract -Start $Start -End $End

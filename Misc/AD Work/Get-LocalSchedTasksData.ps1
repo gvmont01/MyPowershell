@@ -1,6 +1,7 @@
-﻿invoke-command -ComputerName <server> -ScriptBlock { 
+﻿invoke-command -ComputerName 'server' -ScriptBlock { 
   $sched = New-Object -Com 'Schedule.Service'
   $sched.Connect()
+  
   $out = @()
   $sched.GetFolder('\').GetTasks(0) | ForEach-Object {
     $xml = [xml]$_.xml

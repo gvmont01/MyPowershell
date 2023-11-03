@@ -40,7 +40,7 @@ Function New-TimeSpanExtract {
 
 }
 
-$Start = Get-Date 1/14/1970 # '11/23/2021' # '12/13/2021'
+$Start = Get-Date '12/13/2021'
 $End   = Get-Date
 
 New-TimeSpanExtract -Start $Start -End $End
